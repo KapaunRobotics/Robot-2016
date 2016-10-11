@@ -31,12 +31,12 @@ int hand_rotation;
 //^Arm controls^: Arm movement up and down with right button pad.^
 	void update_hand()
 	{
-			if ((vexRT[Btn8R]      == 1) && (hand_rotation <= 70))
+			if ((vexRT[Btn6U]      == 1) && (hand_rotation <= 70))
 			{
 				hand_rotation       = hand_rotation + 1;
 				wait1Msec(5);
 			}
-			else if ((vexRT[Btn8L] == 1) && (hand_rotation >= -127))
+			else if ((vexRT[Btn5U] == 1) && (hand_rotation >= -127))
 			{
 				hand_rotation       = hand_rotation - 1;
 				wait1Msec(5);
@@ -62,9 +62,21 @@ int hand_rotation;
 		hand_rotation = 0;
 		while (true)
 		{
-			update_drive_motors();
-			update_arm_motor();
-			update_hand();
-			update_hopper();
+			//update_drive_motors();
+			//update_arm_motor();
+			//update_hand();
+			//update_hopper();
+
+		motor[LeftMotor] = -70;
+		motor[RightMotor] = -100;
+
+
+
+
+			writeDebugStreamLine("LeftMotor : %d",motor[LeftMotor]);
+			writeDebugStreamLine("RightMotor : %d",motor[RightMotor]);
+			writeDebugStreamLine("ArmMotor : %d",motor[ArmMotor]);
+			writeDebugStreamLine("Hand : %d",motor[Hand]);
+			writeDebugStreamLine("Hopper : %d",motor[Hopper]);
 		}
 	}
